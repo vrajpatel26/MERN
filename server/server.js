@@ -1,13 +1,16 @@
 const express = require("express")
 const app = express()
+const router = require("./router/auth-router")
 
-app.get("/", (req,res)=>{
-    res.status(200).send("Hello I am server");
-})
+app.use("/api/auth",router);
 
-app.get("/about", (req,res)=>{
-    res.status(200).send("Hello I am about page");ff
-})
+// app.get("/", (req,res)=>{
+//     res.status(200).send("Hello I am server");
+// })
+
+// app.get("/about", (req,res)=>{
+//     res.status(200).send("Hello I am about page");ff
+// })
 
 const PORT = 5000
 app.listen(PORT,()=>{
