@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
 })
 
 
+//
+userSchema.pre("save" , async function(params) {
+    console.log("pre method" , this);
+    
+})
+
 //define model or collection name
 
 const User = new mongoose.model("User",userSchema) //in db automatically convert users from User.

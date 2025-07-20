@@ -1,5 +1,6 @@
 
 const User = require("../models/user-model")
+const bcrypt = require("bcryptjs")
 
 //Home page
 
@@ -19,6 +20,7 @@ const register = async (req, res) => {
     try {
         console.log(req.body);
 
+        //schema
         const { username, email, phone, password } = req.body;
 
         //for check email exist or not //await is used when findone method
@@ -28,8 +30,19 @@ const register = async (req, res) => {
             return res.status(400).json({ message: "email already exist" })
         }
 
+
+        //hash the password
+        // const saltRound = 10;
+        // const hash_password = await bcrypt.hash(password, saltRound)
+
         //if does not exist then create
-        const userCreated = await User.create({ username, email, phone, password })
+        const userCreated = await User.create({
+            username,
+            email,
+            phone,
+            password
+            // password: hash_password,
+        })
 
 
 
@@ -38,8 +51,7 @@ const register = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-
     }
 }
 
-module.exports = { home, register }
+module.exports = { home , register }
