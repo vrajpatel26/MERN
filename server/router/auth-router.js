@@ -1,15 +1,26 @@
 const express = require("express")
 const router = express.Router()
+const { home , register } = require("../controllers/auth-controller")
+
+
 
 // router.get("/", (req, res) => {
 //     res.status(200).send("Hello I am server from router");
 // })
 
-router.route("/").get((req, res) => {
-    res.status(200).send("Hello I am server from router");
-})
+// router.route("/").get((req, res) => {
+//     res.status(200).send("Hello I am server from router");
+// })
 
-router.route("/register").get((req, res) => {
-    res.status(200).send("Hello I am register page");
-})
+// router.route("/register").get((req, res) => {
+//     res.status(200).send("Hello I am registeration page");
+// })
+
+
+//using controller
+router.route("/").get(home)
+
+router.route("/register").post(register)
+
+
 module.exports = router;
