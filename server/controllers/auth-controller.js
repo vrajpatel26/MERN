@@ -49,10 +49,10 @@ const register = async (req, res) => {
         // res.status(200).send("Hello I am registeration page using controller");
         res
             .status(200)
-            .json({ 
-                message: userCreated, 
+            .json({
+                message: userCreated,
                 token: await userCreated.generateToken(),
-                userId : userCreated._id.toString()
+                userId: userCreated._id.toString()
             });
 
     } catch (error) {
@@ -60,4 +60,39 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = { home, register }
+
+
+//login page
+
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const userExist = await User.findOne({ email: email })
+        console.log(userExist);
+
+        if (!userExist) {
+            return res.status(400).json({ message: "Invalid" })
+        }
+
+        const user = await bcrypt.compare(password, userExist.password)
+
+        if (user) {
+            res
+                .status(200)
+                .json({
+                    message: "login successful",
+                    token: await userExist.generateToken(),
+                    userId: userExist._id.toString()
+                });
+        }
+        else{
+            res.status(401).json({message:"invalid email or password"})
+        }
+
+    } catch (error) {
+        res.status(500).json("internal server error")
+    }
+}
+
+module.exports = { home, register, login }

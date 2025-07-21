@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { home , register } = require("../controllers/auth-controller")
+const { home , register, login } = require("../controllers/auth-controller")
 
 
 
@@ -22,11 +22,11 @@ router.route("/").get(home)
 
 router.route("/register").post(register)
 
+router.route("/login").post(login)
+
+
 
 module.exports = router;
 
 
 
-// MONGODB_URI = mongodb+srv://vraj26112004:vraj2611@database.brakj1l.mongodb.net/mern_admin?retryWrites=true&w=majority&appName=database
-
-// SECRET_KEY = vraj2611
