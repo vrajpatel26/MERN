@@ -47,11 +47,17 @@ const register = async (req, res) => {
 
 
         // res.status(200).send("Hello I am registeration page using controller");
-        res.status(200).json({ message: userCreated });
+        res
+            .status(200)
+            .json({ 
+                message: userCreated, 
+                token: await userCreated.generateToken(),
+                userId : userCreated._id.toString()
+            });
 
     } catch (error) {
         console.log(error);
     }
 }
 
-module.exports = { home , register }
+module.exports = { home, register }
