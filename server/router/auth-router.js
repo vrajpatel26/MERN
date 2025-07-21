@@ -24,3 +24,9 @@ router.route("/register").post(register)
 
 
 module.exports = router;
+
+
+
+// MONGODB_URI = mongodb+srv://vraj26112004:vraj2611@database.brakj1l.mongodb.net/mern_admin?retryWrites=true&w=majority&appName=database
+
+// SECRET_KEY = vraj2611
