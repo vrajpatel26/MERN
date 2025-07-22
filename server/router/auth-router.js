@@ -26,7 +26,7 @@ router.route("/").get(authcontrollers.home)
 //before registration validate(signUpSchema) check validity means check required field.
 router
     .route("/register")
-    .post(validate(signUpSchema) , authcontrollers.register);
+    .post(validate(signUpSchema), authcontrollers.register);
 
 router.route("/login").post(authcontrollers.login)
 

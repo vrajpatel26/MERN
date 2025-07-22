@@ -3,6 +3,7 @@ const express = require("express")
 const app = express()
 const router = require("./router/auth-router")
 const connectDb = require("./utils/db")
+const errorMiddleware = require("./middlewares/error-middleware")
 
 //middlewear
 app.use(express.json());
@@ -17,6 +18,8 @@ app.use("/api/auth", router);
 //     res.status(200).send("Hello I am about page");ff
 // })
 
+
+app.use(errorMiddleware)
 
 connectDb().then(() => {
     const PORT = 5000
