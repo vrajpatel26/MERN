@@ -1,14 +1,17 @@
 require("dotenv").config() //always in top for get env data
 const express = require("express")
 const app = express()
-const router = require("./router/auth-router")
+const authRouter = require("./router/auth-router")
+const contactRouter = require("./router/contact-router")
 const connectDb = require("./utils/db")
 const errorMiddleware = require("./middlewares/error-middleware")
 
 //middlewear
 app.use(express.json());
 
-app.use("/api/auth", router);
+app.use("/api/auth", authRouter);
+app.use("/api/form", contactRouter);
+
 
 // app.get("/", (req,res)=>{
 //     res.status(200).send("Hello I am server");
